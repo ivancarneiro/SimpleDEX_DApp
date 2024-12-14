@@ -1,80 +1,109 @@
-# 🏗 Scaffold-ETH 2
+# SimpleDEX-DApp: Intercambio de Tokens Descentralizado (🪙🔄🪙) con 🏗 Scaffold-ETH2
+## Descripción General
+SimpleDEX es un proyecto de intercambio descentralizado (DEX) implementado usando Scaffold-ETH2, compuesto por tres contratos inteligentes independientes: SimpleDEX, TokenA y TokenB, diseñados para realizar intercambios de tokens utilizando la fórmula de producto constante.
 
-<h4 align="center">
-  <a href="https://docs.scaffoldeth.io">Documentation</a> |
-  <a href="https://scaffoldeth.io">Website</a>
-</h4>
+## 🚀 Inicio Rápido
 
-🧪 An open-source, up-to-date toolkit for building decentralized applications (dapps) on the Ethereum blockchain. It's designed to make it easier for developers to create and deploy smart contracts and build user interfaces that interact with those contracts.
+### Requisitos Previos
+- Node.js (v18+)
+- pnpm
+- Wallet compatible con Ethereum (MetaMask, WalletConnect)
 
-⚙️ Built using NextJS, RainbowKit, Hardhat, Wagmi, Viem, and Typescript.
+### Instalación
 
-- ✅ **Contract Hot Reload**: Your frontend auto-adapts to your smart contract as you edit it.
-- 🪝 **[Custom hooks](https://docs.scaffoldeth.io/hooks/)**: Collection of React hooks wrapper around [wagmi](https://wagmi.sh/) to simplify interactions with smart contracts with typescript autocompletion.
-- 🧱 [**Components**](https://docs.scaffoldeth.io/components/): Collection of common web3 components to quickly build your frontend.
-- 🔥 **Burner Wallet & Local Faucet**: Quickly test your application with a burner wallet and local faucet.
-- 🔐 **Integration with Wallet Providers**: Connect to different wallet providers and interact with the Ethereum network.
-
-![Debug Contracts tab](https://github.com/scaffold-eth/scaffold-eth-2/assets/55535804/b237af0c-5027-4849-a5c1-2e31495cccb1)
-
-## Requirements
-
-Before you begin, you need to install the following tools:
-
-- [Node (>= v18.18)](https://nodejs.org/en/download/)
-- Yarn ([v1](https://classic.yarnpkg.com/en/docs/install/) or [v2+](https://yarnpkg.com/getting-started/install))
-- [Git](https://git-scm.com/downloads)
-
-## Quickstart
-
-To get started with Scaffold-ETH 2, follow the steps below:
-
-1. Install dependencies if it was skipped in CLI:
-
-```
-cd my-dapp-example
-yarn install
+1. Clonar el repositorio
+```bash
+git clone https://github.com/tu-usuario/SimpleDEX-DApp.git
+cd SimpleDEX-DApp
 ```
 
-2. Run a local network in the first terminal:
-
-```
-yarn chain
-```
-
-This command starts a local Ethereum network using Hardhat. The network runs on your local machine and can be used for testing and development. You can customize the network configuration in `packages/hardhat/hardhat.config.ts`.
-
-3. On a second terminal, deploy the test contract:
-
-```
-yarn deploy
+2. Instalar dependencias
+```bash
+pnpm install
 ```
 
-This command deploys a test smart contract to the local network. The contract is located in `packages/hardhat/contracts` and can be modified to suit your needs. The `yarn deploy` command uses the deploy script located in `packages/hardhat/deploy` to deploy the contract to the network. You can also customize the deploy script.
-
-4. On a third terminal, start your NextJS app:
-
-```
-yarn start
+3. Arrancar el entorno de desarrollo local
+```bash
+pnpm run dev
 ```
 
-Visit your app on: `http://localhost:3000`. You can interact with your smart contract using the `Debug Contracts` page. You can tweak the app config in `packages/nextjs/scaffold.config.ts`.
+## 🔧 Contratos Inteligentes
 
-Run smart contract test with `yarn hardhat:test`
+### 1. SimpleDEX.sol
+- **Ubicación**: `packages/hardhat/contracts/SimpleDEX.sol`
+- **Funcionalidad**: Contrato principal de intercambio de tokens
+- **Características**:
+  - Gestión de liquidez
+  - Mecanismo de intercambio de tokens
+  - Cálculo de precios mediante fórmula de producto constante
 
-- Edit your smart contracts in `packages/hardhat/contracts`
-- Edit your frontend homepage at `packages/nextjs/app/page.tsx`. For guidance on [routing](https://nextjs.org/docs/app/building-your-application/routing/defining-routes) and configuring [pages/layouts](https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts) checkout the Next.js documentation.
-- Edit your deployment scripts in `packages/hardhat/deploy`
+### 2. TokenA.sol
+- **Ubicación**: `packages/hardhat/contracts/TokenA.sol`
+- **Funcionalidad**: Contrato del primer token ERC20
+- **Características**:
+  - Implementación estándar ERC20
+  - Minteo inicial
+  - Gestión de suministro
 
+### 3. TokenB.sol
+- **Ubicación**: `packages/hardhat/contracts/TokenB.sol`
+- **Funcionalidad**: Contrato del segundo token ERC20
+- **Características**:
+  - Implementación estándar ERC20
+  - Minteo inicial
+  - Gestión de suministro
 
-## Documentation
+## 🛠 Desarrollo
 
-Visit our [docs](https://docs.scaffoldeth.io) to learn how to start building with Scaffold-ETH 2.
+### Comandos Principales
+- `pnpm run dev`: Inicia el entorno de desarrollo
+- `pnpm run test`: Ejecuta pruebas de contratos
+- `pnpm run deploy`: Despliega contratos en red seleccionada
 
-To know more about its features, check out our [website](https://scaffoldeth.io).
+## 🔐 Seguridad
 
-## Contributing to Scaffold-ETH 2
+### Consideraciones
+- Solo el propietario del contrato puede añadir o retirar liquidez
+- Protección contra ataques de reentrancy
+- Requiere aprobaciones de tokens antes de transacciones
+- Validación de montos y niveles de liquidez
 
-We welcome contributions to Scaffold-ETH 2!
+## 📡 Despliegue
 
-Please see [CONTRIBUTING.MD](https://github.com/scaffold-eth/scaffold-eth-2/blob/main/CONTRIBUTING.md) for more information and guidelines for contributing to Scaffold-ETH 2.
+### Requisitos
+- Despliegue de TokenA y TokenB
+- Inicialización del contrato SimpleDEX con direcciones de tokens
+- Aprobaciones de tokens suficientes
+- Despliegue por el propietario previsto
+
+## 🧪 Pruebas
+
+### Ejecución de Pruebas
+```bash
+pnpm run test
+```
+
+## 📊 Eventos
+
+- `LiquidityAdded`: Activado al añadir liquidez
+- `LiquidityRemoved`: Activado al retirar liquidez
+- `TokenSwapped`: Registrado en cada intercambio de tokens
+
+## ⚠️ Limitaciones
+
+- Par de trading único
+- Liquidez controlada por el propietario
+- Sin características avanzadas de AMM
+- Cálculo de precios simplificado
+
+## 📄 Licencia
+MIT License
+
+## 🚧 Disclaimer
+Esta es una implementación educativa/experimental de DEX. Su uso en producción requiere una auditoría exhaustiva y características adicionales.
+
+## 👥 Contribuidores
+- Ivan Carneiro
+
+## 📞 Contacto
+[información de contacto o redes sociales]
