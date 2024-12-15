@@ -33,7 +33,7 @@ const Home: NextPage = () => {
               <MagnifyingGlassIcon className="h-8 w-8 fill-secondary" />
               <p>
                 Explore your local transactions with the{" "}
-                <Link href="https://sepolia.etherscan.io/address/0x44f1de22eBCDFA843F96E126b24889Abb7519804" passHref className="link">
+                <Link href="/blockexplorer" passHref className="link">
                   Block Explorer
                 </Link>{" "}
                 tab.
